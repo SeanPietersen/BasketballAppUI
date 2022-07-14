@@ -74,7 +74,6 @@ export class RegisterComponent{
       }
     })
 
-    console.log(error);
     if (error === 0) 
     {
       this.registerUserInformation.firstName = this.registerForm.value.firstName;
