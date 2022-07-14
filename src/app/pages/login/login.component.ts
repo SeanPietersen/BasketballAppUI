@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/response/user';
-import { UserIdentity } from 'src/app/models/response/User-identity';
 import { UserSignIn } from 'src/app/models/user-signin';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -21,23 +20,13 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
-  userTosignInReturnValues: User = {
-    userId: 0,
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  }
 
-  userWithIdentityTokenReturned: UserIdentity = {
-    user: this.userTosignInReturnValues,
-    identityToken: ''
-  }
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -55,6 +44,7 @@ export class LoginComponent implements OnInit {
   {
     this.submitted = true;
     var error = 0;
+    
     Object.keys(this.signInForm.controls).forEach(key => {
       if(this.signInForm.get(key)?.invalid){
         error ++;
@@ -70,9 +60,9 @@ export class LoginComponent implements OnInit {
       this.userService.userSignIn(this.userSignInInformation)
       .subscribe({
         next:(userIdentityToken) =>{
-          this.userWithIdentityTokenReturned.user = userIdentityToken.user;
-          this.userWithIdentityTokenReturned.identityToken = userIdentityToken.identityToken;
-          console.table(this.userWithIdentityTokenReturned);
+          //updating the authentication service with the user information and identity token
+          this.authenticationService.updateUserIdenity(userIdentityToken);
+
           this.router.navigate(['dashboard'])
         },
         error:(response) => {

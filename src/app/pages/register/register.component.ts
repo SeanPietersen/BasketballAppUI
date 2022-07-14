@@ -3,10 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidationService } from 'src/app/services/custom-validation.service';
 import { UserService } from 'src/app/services/user.service';
 import {RegisterUser} from 'src/app/models/registerUser'
-import { User } from 'src/app/models/response/user';
 import { UserSignIn } from 'src/app/models/user-signin';
-import { UserIdentity } from 'src/app/models/response/User-identity';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -23,30 +22,20 @@ export class RegisterComponent{
    password: ''
   }
 
-  userToRegisterReturnValues: User = {
-    userId: 0,
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  }
-
   userForSignInValues: UserSignIn = {
     email: '',
     password: ''
   }
 
-  userWithIdentityTokenReturned: UserIdentity = {
-    user: this.userToRegisterReturnValues,
-    identityToken: ''
-  }
+
 
 
   constructor(
     private fb: FormBuilder,
     private customValidator: CustomValidationService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -92,9 +81,8 @@ export class RegisterComponent{
           this.userService.userSignIn(this.userForSignInValues)
           .subscribe({
             next:(userIdentityToken) =>{
-              this.userWithIdentityTokenReturned.user = userIdentityToken.user;
-              this.userWithIdentityTokenReturned.identityToken = userIdentityToken.identityToken;
-              console.table(this.userWithIdentityTokenReturned);
+              this.authenticationService.updateUserIdenity(userIdentityToken);
+              // console.table(this.userWithIdentityTokenReturned);
               this.router.navigate(['dashboard'])
             },
             error:(response) => {

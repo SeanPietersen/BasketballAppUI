@@ -27,6 +27,12 @@
                       <i class="fa fa-exclamation-circle"></i>
                       <small>Email is required</small>
                     </span>
+                    <span class="danger" 
+                      *ngIf="signInFormControl['email'].touched
+                       && signInFormControl['email'].errors?.['email']">
+                      <i class="fa fa-exclamation-circle"></i>
+                      <small>Please enter a valid email</small>
+                </span>
                 <!-- <i class="fa fa-check-circle"></i> -->
             </div>
 
