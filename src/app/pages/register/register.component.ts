@@ -6,6 +6,7 @@ import {RegisterUser} from 'src/app/models/registerUser'
 import { User } from 'src/app/models/response/user';
 import { UserSignIn } from 'src/app/models/user-signin';
 import { UserIdentity } from 'src/app/models/response/User-identity';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -44,7 +45,8 @@ export class RegisterComponent{
   constructor(
     private fb: FormBuilder,
     private customValidator: CustomValidationService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -93,6 +95,7 @@ export class RegisterComponent{
               this.userWithIdentityTokenReturned.user = userIdentityToken.user;
               this.userWithIdentityTokenReturned.identityToken = userIdentityToken.identityToken;
               console.table(this.userWithIdentityTokenReturned);
+              this.router.navigate(['dashboard'])
             },
             error:(response) => {
               alert("an error occured trying to sign in the user");

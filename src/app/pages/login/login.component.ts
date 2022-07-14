@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/response/user';
 import { UserIdentity } from 'src/app/models/response/User-identity';
 import { UserSignIn } from 'src/app/models/user-signin';
@@ -35,7 +36,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -71,6 +73,7 @@ export class LoginComponent implements OnInit {
           this.userWithIdentityTokenReturned.user = userIdentityToken.user;
           this.userWithIdentityTokenReturned.identityToken = userIdentityToken.identityToken;
           console.table(this.userWithIdentityTokenReturned);
+          this.router.navigate(['dashboard'])
         },
         error:(response) => {
           alert("an error occured trying to sign in the user");
