@@ -1,3 +1,6 @@
+.nav-link {
+    cursor: pointer;
+}
 
 #logoIcon {
     margin-left: 30px;

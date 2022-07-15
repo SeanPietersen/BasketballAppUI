@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { TeamComponent } from './pages/team/team/team.component';
+import { TeamsComponent } from './pages/team/teams/teams.component';
 import { AuthenticationGuard } from './services/authentication.guard';
 
 const routes: Routes = [
@@ -23,6 +25,15 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'dashboard/team',
+    component: TeamsComponent
+    // canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'dashboard/team/:team',
+    component: TeamComponent
   }
 ];
 

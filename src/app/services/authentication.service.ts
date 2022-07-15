@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/response/user';
-import { UserIdentity } from '../models/response/User-identity';
+import { UserIdentity } from '../models/response/userIdentity';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +39,9 @@ export class AuthenticationService {
 
   public getUserIdentity(): User{
     return this.user!;
+  }
+
+  public getUserIdentityToken(): string{
+    return this.identityToken!;
   }
 }

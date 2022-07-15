@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { RegisterUser } from '../models/registerUser';
 import { User } from '../models/response/user';
-import { UserIdentity} from '../models/response/User-identity';
+import { UserIdentity} from '../models/response/userIdentity';
 import { UserSignIn } from '../models/user-signin';
 import { AuthenticationService } from './authentication.service';
 

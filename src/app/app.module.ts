@@ -10,6 +10,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PasswordPatternDirective } from './directives/password-pattern.directive';
 import { MatchPasswordDirective } from './directives/match-password.directive';
+import { TeamsComponent } from './pages/team/teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MatchPasswordDirective } from './directives/match-password.directive';
     RegisterComponent,
     DashboardComponent,
     PasswordPatternDirective,
-    MatchPasswordDirective
+    MatchPasswordDirective,
+    TeamsComponent
   ],
   imports: [
     BrowserModule,
