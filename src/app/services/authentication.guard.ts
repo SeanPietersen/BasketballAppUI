@@ -12,13 +12,13 @@ export class AuthenticationGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-      // if(this.authenticationService.getUserIdentityToken.length === 0)
-      // {
-      //   return false;
-      // }
+      
+      if(this.authenticationService.isUserLoggedOn())
+      {
+        return true;
+      }
 
-      return true;
+      return false;
   }
   
 }

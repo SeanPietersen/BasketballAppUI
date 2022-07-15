@@ -10,18 +10,18 @@ export class AuthenticationService {
   private user?: User;
   private identityToken?: string;
 
-  userValues: User = {
-    userId: 0,
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  }
+  // userValues: User = {
+  //   userId: 0,
+  //   firstName: '',
+  //   lastName: '',
+  //   email: '',
+  //   password: ''
+  // }
 
-  userWithIdentityTokenValues: UserIdentity = {
-    user: this.userValues,
-    identityToken: ''
-  }
+  // userWithIdentityTokenValues: UserIdentity = {
+  //   user: this.userValues,
+  //   identityToken: ''
+  // }
 
   constructor() { }
 

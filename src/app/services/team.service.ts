@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { Team } from '../models/response/team';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,21 @@ import { Team } from '../models/response/team';
 export class TeamService {
 
   baseApiUrl: string = environment.baseApiUrl;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
 
   getAllTeams(): Observable<Team[]>
   {
-    return this.http.get<Team[]>(this.baseApiUrl+'/teams');
+    var token = "bearer "+this.authenticationService.getUserIdentityToken();
+    console.log(this.authenticationService.getUserIdentityToken());
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: token
+      })
+    };
+    console.log(httpOptions);
+    return this.http.get<Team[]>(this.baseApiUrl+'/teams', httpOptions);
   }
 
   getTeamById(id: number): Observable<Team> {
