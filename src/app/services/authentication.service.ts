@@ -10,19 +10,6 @@ export class AuthenticationService {
   private user?: User;
   private identityToken?: string;
 
-  // userValues: User = {
-  //   userId: 0,
-  //   firstName: '',
-  //   lastName: '',
-  //   email: '',
-  //   password: ''
-  // }
-
-  // userWithIdentityTokenValues: UserIdentity = {
-  //   user: this.userValues,
-  //   identityToken: ''
-  // }
-
   constructor() { }
 
   public updateUserIdenity(userIdentity: UserIdentity): void {

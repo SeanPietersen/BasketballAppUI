@@ -28,7 +28,7 @@
         </td>
         <td>(number of players)</td>
         <td>(number of coaches)</td>
-        <td><a [routerLink]="['/dashboard','team', team.teamId]">View</a></td>
+        <td><a [routerLink]="[team.teamId]">View</a></td>
       </tr>
     </tbody>
     <p *ngIf="!teams || teams.length <= 0">No Teams Found</p>

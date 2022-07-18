@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { TeamComponent } from './pages/team/team/team.component';
 import { TeamsComponent } from './pages/team/teams/teams.component';
+import { TemplateComponent } from './pages/template/template.component';
 import { AuthenticationGuard } from './services/authentication.guard';
 
 const routes: Routes = [
@@ -22,19 +23,29 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthenticationGuard]
+    path: 'admin',
+    component: TemplateComponent,
+    // canActivateChild: [AuthenticationGuard],
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
+      {
+        path: 'teams',
+        component: TeamsComponent
+      },
+      {
+        path: 'teams/:team',
+        component: TeamComponent
+      },
+    ]
   },
-  {
-    path: 'dashboard/team',
-    component: TeamsComponent
-    // canActivate: [AuthenticationGuard]
-  },
-  {
-    path: 'dashboard/team/:team',
-    component: TeamComponent
-  }
+  
+  // {
+  //   path: 'dashboard/team/:team',
+  //   component: TeamComponent
+  // }
 ];
 
 @NgModule({

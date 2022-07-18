@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
           //updating the authentication service with the user information and identity token
           this.authenticationService.updateUserIdenity(userIdentityToken);
           console.log(userIdentityToken.identityToken);
-          this.router.navigate(['dashboard'])
+          this.router.navigate(['admin/dashboard'])
         },
         error:(response) => {
           alert("an error occured trying to sign in the user");

@@ -82,8 +82,7 @@ export class RegisterComponent{
           .subscribe({
             next:(userIdentityToken) =>{
               this.authenticationService.updateUserIdenity(userIdentityToken);
-              // console.table(this.userWithIdentityTokenReturned);
-              this.router.navigate(['dashboard'])
+              this.router.navigate(['admin/dashboard'])
             },
             error:(response) => {
               alert("an error occured trying to sign in the user");

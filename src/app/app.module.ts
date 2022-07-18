@@ -11,6 +11,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PasswordPatternDirective } from './directives/password-pattern.directive';
 import { MatchPasswordDirective } from './directives/match-password.directive';
 import { TeamsComponent } from './pages/team/teams/teams.component';
+import { TemplateComponent } from './pages/template/template.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TeamsComponent } from './pages/team/teams/teams.component';
     DashboardComponent,
     PasswordPatternDirective,
     MatchPasswordDirective,
-    TeamsComponent
+    TeamsComponent,
+    TemplateComponent
   ],
   imports: [
     BrowserModule,

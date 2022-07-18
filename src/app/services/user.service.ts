@@ -7,6 +7,7 @@ import { User } from '../models/response/user';
 import { UserIdentity} from '../models/response/userIdentity';
 import { UserSignIn } from '../models/user-signin';
 import { AuthenticationService } from './authentication.service';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,15 +15,15 @@ import { AuthenticationService } from './authentication.service';
 export class UserService {
   
   baseApiUrl: string = environment.baseApiUrl;
-  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient, private httpService: HttpService) { }
 
   registerUser(registerUserRequest: RegisterUser): Observable<User>
   {
-    return this.http.post<User>(this.baseApiUrl+'/users/register', registerUserRequest);
+    return this.httpService.post<User>('users/register', registerUserRequest, false);
   }
 
   userSignIn(signInUserRequest: UserSignIn): Observable<UserIdentity>
   {
-     return this.http.post<UserIdentity>(this.baseApiUrl+'/users/signin', signInUserRequest);
+    return this.httpService.post<UserIdentity>('users/signin', signInUserRequest, false);
   }
 }
