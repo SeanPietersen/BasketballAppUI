@@ -1,1 +1,82 @@
-<p>team works!</p>
+<div class="container">
+    <img
+        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+        alt=""
+        style="width: 300px; height: 300px"
+        class="teamImage"
+        />
+    <h1>{{teamDetails.name}}</h1>
+    <h2>{{teamDetails.state}}</h2>
+</div>
+<h3>Playes:</h3>
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Date Of Birth</th>
+      <th>Height</th>
+      <th>Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let player of players">
+      <td>
+        <div class="d-flex align-items-center">
+          <img
+              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+              alt=""
+              style="width: 45px; height: 45px"
+              class="rounded-circle"
+              />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{player.firstName}}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{player.lastName}}</p>
+      </td>
+      <td>{{player.dateOfBirth}}</td>
+      <td>{{player.height}}</td>
+      <td>{{player.Weight}}</td>
+    </tr>
+  </tbody>
+  <p *ngIf="!players || players.length <= 0">No Players Found</p>
+</table>
+<h3>Coaches:</h3>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+      <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Weight</th>
+        <th>Height</th>
+      </tr>
+    </thead>
+    <!-- <tbody>
+      <tr *ngFor="let team of teams">
+        <td>
+          <div class="d-flex align-items-center">
+            <img
+                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                alt=""
+                style="width: 45px; height: 45px"
+                class="rounded-circle"
+                />
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{team.name}}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p class="fw-normal mb-1">{{team.state}}</p>
+        </td>
+        <td>(number of players)</td>
+        <td>(number of coaches)</td>
+        <td><a [routerLink]="[team.teamId]">View</a></td>
+      </tr>
+    </tbody>
+    <p *ngIf="!teams || teams.length <= 0">No Teams Found</p> -->
+  </table>

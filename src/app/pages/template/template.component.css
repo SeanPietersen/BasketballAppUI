@@ -1,6 +1,13 @@
 .nav-link {
     cursor: pointer;
 }
+.navbar {
+    overflow: hidden;
+    position: fixed; 
+    top: 0; 
+    width: 100%;
+
+  }
 
 #logoIcon {
     margin-left: 30px;

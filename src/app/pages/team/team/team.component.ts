@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Player } from 'src/app/models/response/player';
 import { Team } from 'src/app/models/response/team';
+import { PlayerService } from 'src/app/services/player.service';
 import { TeamService } from 'src/app/services/team.service';
 
 @Component({
@@ -16,9 +18,12 @@ export class TeamComponent implements OnInit {
     state: ''
   };
 
+  players: Player[] = [];
+
   constructor(private route: ActivatedRoute, 
-    private teamService: TeamService, 
-    private router: Router) { }
+              private teamService: TeamService,
+              private playerService: PlayerService, 
+              private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe({
@@ -31,6 +36,15 @@ export class TeamComponent implements OnInit {
           .subscribe({
             next: (response) => {
               this.teamDetails = response;
+              this.playerService.getAllPlayersForTeam(this.teamDetails.teamId)
+              .subscribe({
+                next: (players) => {
+                  this.players= (players);
+                },
+                error: (response) => {
+                  alert("Players were not found");
+                }
+              })
             }
           })
         }
