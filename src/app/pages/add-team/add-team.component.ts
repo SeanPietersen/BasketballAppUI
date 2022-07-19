@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CreateTeam } from 'src/app/models/createTeam';
+import { TeamService } from 'src/app/services/team.service';
 
 @Component({
   selector: 'app-add-team',
@@ -6,10 +9,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-team.component.css']
 })
 export class AddTeamComponent implements OnInit {
+  
+  addTeamRequest: CreateTeam = {
+    name: '',
+    state: ''    
+  }
 
-  constructor() { }
+  constructor(private teamService: TeamService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+
+  addTeam()
+  {
+    this.teamService.createTeam(this.addTeamRequest)
+    .subscribe({
+      next: (team) => {
+        this.router.navigate(['admin/teams'])
+      },
+      error: (response) => {
+        alert("Error uploading team");
+      }
+    })
   }
 
 }
