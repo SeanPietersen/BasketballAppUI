@@ -25,13 +25,18 @@ export class AddTeamComponent implements OnInit {
   {
     this.teamService.createTeam(this.addTeamRequest)
     .subscribe({
-      next: (team) => {
-        this.router.navigate(['admin/teams'])
+      next: (apiResponseTeam) => {
+        if(apiResponseTeam.isSuccess)
+        {
+          this.router.navigate(['admin/teams']);
+        }
+        else{
+          alert(apiResponseTeam.errors[0]);
+        }
       },
       error: (response) => {
         alert("Error uploading team");
       }
     })
   }
-
 }

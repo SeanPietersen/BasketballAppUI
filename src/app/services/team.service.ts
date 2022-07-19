@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
 import { CreateTeam } from '../models/createTeam';
-import { Team } from '../models/response/team';
+import { ApiResponse, Team } from '../models/response/team';
 import { HttpService } from './http.service';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class TeamService {
     return this.httpService.get<Team>(`teams/${id}`, true);
   }
 
-  createTeam(createTeamRequest: CreateTeam): Observable<Team>{
-    return this.httpService.post<Team>('teams/addTeam', createTeamRequest, true);
+  createTeam(createTeamRequest: CreateTeam): Observable<ApiResponse<Team>>{
+    return this.httpService.post<ApiResponse<Team>>('teams/addTeam', createTeamRequest, true);
   }
 }

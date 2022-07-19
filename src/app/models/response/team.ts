@@ -3,3 +3,9 @@ export interface Team {
     name: string;
     state: string;
 }
+
+export interface ApiResponse<T> {
+    isSuccess: boolean;
+    errors: string[];
+    body: any
+}
