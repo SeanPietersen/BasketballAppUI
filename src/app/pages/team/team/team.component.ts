@@ -26,30 +26,28 @@ export class TeamComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe({
-      next: (params) => {
-        const id = params.get('id');
-        var intIdNumber:number = +id!;
+    let id = this.route.snapshot.params['teamId'];
 
-        if(intIdNumber) {
-          this.teamService.getTeamById(intIdNumber)
+    if(id) {
+      this.teamService.getTeamById(id)
+      .subscribe({
+        next: (team) => {
+          this.teamDetails = team;
+          this.playerService.getAllPlayersForTeam(team.teamId)
           .subscribe({
-            next: (response) => {
-              this.teamDetails = response;
-              this.playerService.getAllPlayersForTeam(this.teamDetails.teamId)
-              .subscribe({
-                next: (players) => {
-                  this.players= (players);
-                },
-                error: (response) => {
-                  alert("Players were not found");
-                }
-              })
+            next: (playerResponse) => {
+              this.players = (playerResponse);
+            },
+            error: (response) => {
+              alert("Players were not found");
             }
           })
+        },
+        error: (response) => {
+          alert("Error getting team");
         }
-      }
-    })
+      })
+    }
   }
 
 }

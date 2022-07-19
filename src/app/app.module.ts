@@ -12,6 +12,9 @@ import { PasswordPatternDirective } from './directives/password-pattern.directiv
 import { MatchPasswordDirective } from './directives/match-password.directive';
 import { TeamsComponent } from './pages/team/teams/teams.component';
 import { TemplateComponent } from './pages/template/template.component';
+import { AddTeamComponent } from './pages/add-team/add-team.component';
+import { CommonModule } from '@angular/common';
+import { TeamComponent } from './pages/team/team/team.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +25,17 @@ import { TemplateComponent } from './pages/template/template.component';
     PasswordPatternDirective,
     MatchPasswordDirective,
     TeamsComponent,
-    TemplateComponent
+    TeamComponent,
+    TemplateComponent,
+    AddTeamComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
