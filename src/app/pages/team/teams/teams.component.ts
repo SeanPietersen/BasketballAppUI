@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Team } from 'src/app/models/response/team';
 import { TeamService } from 'src/app/services/team.service';
 
@@ -11,7 +12,8 @@ export class TeamsComponent implements OnInit {
 
   teams: Team[] = [];
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.teamService.getAllTeams()
@@ -23,6 +25,11 @@ export class TeamsComponent implements OnInit {
         alert("Teams was not added");
       }
     })
+  }
+
+  addNewTeam()
+  {
+    this.router.navigate(['admin/addTeam'])
   }
 
 }
